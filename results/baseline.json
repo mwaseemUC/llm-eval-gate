@@ -1,0 +1,466 @@
+{
+  "model": "claude-haiku-5-5",
+  "served_models": [
+    "claude-haiku-5-5"
+  ],
+  "prompt_version": "v2",
+  "git_sha": "ffdd26761995496bdf2d0698854e872141845708",
+  "timestamp": "2026-10-15T23:23:28+00:00",
+  "n": 50,
+  "n_errors": 0,
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "per_class": {
+    "billing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 9
+    },
+    "bug_report": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 9
+    },
+    "feature_request": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8
+    },
+    "account_access": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8
+    },
+    "how_to": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8
+    },
+    "cancellation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8
+    }
+  },
+  "confusion": {
+    "billing": {
+      "billing": 9,
+      "bug_report": 0,
+      "feature_request": 0,
+      "account_access": 0,
+      "how_to": 0,
+      "cancellation": 0
+    },
+    "bug_report": {
+      "billing": 0,
+      "bug_report": 9,
+      "feature_request": 0,
+      "account_access": 0,
+      "how_to": 0,
+      "cancellation": 0
+    },
+    "feature_request": {
+      "billing": 0,
+      "bug_report": 0,
+      "feature_request": 8,
+      "account_access": 0,
+      "how_to": 0,
+      "cancellation": 0
+    },
+    "account_access": {
+      "billing": 0,
+      "bug_report": 0,
+      "feature_request": 0,
+      "account_access": 8,
+      "how_to": 0,
+      "cancellation": 0
+    },
+    "how_to": {
+      "billing": 0,
+      "bug_report": 0,
+      "feature_request": 0,
+      "account_access": 0,
+      "how_to": 8,
+      "cancellation": 0
+    },
+    "cancellation": {
+      "billing": 0,
+      "bug_report": 0,
+      "feature_request": 0,
+      "account_access": 0,
+      "how_to": 0,
+      "cancellation": 8
+    }
+  },
+  "tokens": {
+    "input": 120118,
+    "output": 4269
+  },
+  "cost_usd": {
+    "total": 0.003805,
+    "per_ticket": 7.6e-05
+  },
+  "latency_s": {
+    "p50": 1.135,
+    "p95": 1.663
+  },
+  "predictions": [
+    {
+      "id": "t001",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t002",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t003",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t004",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.96,
+      "error": null
+    },
+    {
+      "id": "t005",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t006",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t007",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.9,
+      "error": null
+    },
+    {
+      "id": "t008",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t009",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.8,
+      "error": null
+    },
+    {
+      "id": "t010",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t011",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.96,
+      "error": null
+    },
+    {
+      "id": "t012",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t013",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t014",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.8,
+      "error": null
+    },
+    {
+      "id": "t015",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t016",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t017",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t018",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t019",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t020",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t021",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t022",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t023",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.96,
+      "error": null
+    },
+    {
+      "id": "t024",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.9,
+      "error": null
+    },
+    {
+      "id": "t025",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.8,
+      "error": null
+    },
+    {
+      "id": "t026",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t027",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t028",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t029",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t030",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t031",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.8,
+      "error": null
+    },
+    {
+      "id": "t032",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t033",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.9,
+      "error": null
+    },
+    {
+      "id": "t034",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t035",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t036",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.9,
+      "error": null
+    },
+    {
+      "id": "t037",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.88,
+      "error": null
+    },
+    {
+      "id": "t038",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.8,
+      "error": null
+    },
+    {
+      "id": "t039",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t040",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.9,
+      "error": null
+    },
+    {
+      "id": "t041",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t042",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t043",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t044",
+      "label": "how_to",
+      "pred": "how_to",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t045",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t046",
+      "label": "bug_report",
+      "pred": "bug_report",
+      "confidence": 0.85,
+      "error": null
+    },
+    {
+      "id": "t047",
+      "label": "cancellation",
+      "pred": "cancellation",
+      "confidence": 0.97,
+      "error": null
+    },
+    {
+      "id": "t048",
+      "label": "feature_request",
+      "pred": "feature_request",
+      "confidence": 0.95,
+      "error": null
+    },
+    {
+      "id": "t049",
+      "label": "account_access",
+      "pred": "account_access",
+      "confidence": 0.93,
+      "error": null
+    },
+    {
+      "id": "t050",
+      "label": "billing",
+      "pred": "billing",
+      "confidence": 0.95,
+      "error": null
+    }
+  ],
+  "pricing_known": true
+}
