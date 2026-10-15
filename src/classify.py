@@ -13,7 +13,7 @@ from typing import Any
 import anthropic
 from pydantic import BaseModel, Field, ValidationError
 
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3-trimmed"
 DEFAULT_MODEL = "claude-haiku-5-5"
 MODEL_ENV_VAR = "CLASSIFIER_MODEL"
 
@@ -182,9 +182,7 @@ detail in the ticket).
 
 SYSTEM_PROMPT = "\n".join(
     [
-        PRODUCT_CONTEXT,
         CATEGORY_DEFINITIONS,
-        TIE_BREAK_RULES,
         INJECTION_WARNING,
         OUTPUT_INSTRUCTIONS,
     ]
