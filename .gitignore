@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+results/runs/
+results/latest.json
+results/gate_report.md
+results/base_baseline.json

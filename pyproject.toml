@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-eval-gate"
+version = "0.1.0"
+description = "LLM support-ticket classifier with a golden-set eval that gates pull requests in CI"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Afnan Waseem", email = "mwaseem@uchicago.edu" }]
+license = { text = "MIT" }
+dependencies = [
+    "anthropic>=1.14,<2",
+    "pydantic>=2.7",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["src/classify.py"]
+sources = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]

@@ -1,0 +1,98 @@
+name: eval-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    paths:
+      - "src/**"
+      - "data/**"
+      - "evals/**"
+      - "results/baseline.json"
+      - "pyproject.toml"
+      - ".github/workflows/eval-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Runs triggered by an unrelated label get their own group so they can't cancel a real eval.
+  group: >-
+    eval-gate-${{ github.event.pull_request.number || github.ref }}${{
+    (github.event.action == 'labeled' && github.event.label.name != 'update-baseline')
+    && format('-label-{0}', github.run_id) || '' }}
+  cancel-in-progress: true
+
+jobs:
+  eval:
+    name: Golden-set eval and regression gate
+    # Only the update-baseline label should re-run the (paid) evals.
+    if: github.event.action != 'labeled' || github.event.label.name == 'update-baseline'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check for API key
+        id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Eval gate skipped::ANTHROPIC_API_KEY is not available (fork PR or secret not set). Skipping evals."
+            echo "Eval gate skipped: ANTHROPIC_API_KEY is not available (fork PR or secret not set)." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.available == 'true'
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        if: steps.key.outputs.available == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        if: steps.key.outputs.available == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Select baseline
+        id: baseline
+        if: steps.key.outputs.available == 'true'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          USE_PR_BASELINE: ${{ contains(github.event.pull_request.labels.*.name, 'update-baseline') }}
+        run: |
+          if [ "$USE_PR_BASELINE" = "true" ]; then
+            python evals/select_baseline.py --base-ref "$BASE_REF" --use-pr-baseline
+          else
+            python evals/select_baseline.py --base-ref "$BASE_REF"
+          fi
+
+      - name: Run evals
+        if: steps.key.outputs.available == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python evals/run_evals.py
+
+      - name: Gate vs baseline
+        if: steps.key.outputs.available == 'true'
+        env:
+          GATE_BASELINE: ${{ steps.baseline.outputs.path }}
+        run: python evals/gate.py --baseline "$GATE_BASELINE"
+
+      - name: Upload results
+        if: always() && steps.key.outputs.available == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: |
+            results/latest.json
+            results/gate_report.md
+          if-no-files-found: warn
